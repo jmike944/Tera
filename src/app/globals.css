@@ -1,26 +1,264 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Tera Desarrollos — Design tokens (colors, type, spacing, motion)
+   Ported verbatim from design_handoff_website/tokens/*.css
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---- Brand ramp (the logo aqua → ocean) ---------- */
+  --tera-aqua: #2be3ee;
+  --tera-300: #4fd7ec;
+  --tera-400: #18c0e6;
+  --tera-500: #119fd6; /* PRIMARY */
+  --tera-600: #0e89c4;
+  --tera-700: #0c6f9f;
+  --tera-800: #0a567c;
+  --tera-900: #08405d;
+
+  /* ---- Ink / navy (text + dark surfaces) ----------- */
+  --ink-900: #06283a;
+  --ink-800: #0c3346;
+  --ink-700: #143f56;
+
+  /* ---- Cool neutrals -------------------------------- */
+  --white: #ffffff;
+  --neutral-50: #f5f8fa;
+  --neutral-100: #edf2f6;
+  --neutral-200: #dde6ec;
+  --neutral-300: #c5d2db;
+  --neutral-400: #9daeb9;
+  --neutral-500: #73848f;
+  --neutral-600: #51616c;
+  --neutral-700: #37454f;
+  --neutral-800: #1f2c34;
+
+  /* ---- Warm clay accent ----------------------------- */
+  --clay-300: #ebc6a4;
+  --clay-500: #d98e5a;
+  --clay-600: #c2784a;
+
+  /* ---- Semantic ------------------------------------- */
+  --green-500: #1f9d6b;
+  --green-50: #e6f5ee;
+  --amber-500: #e0a12e;
+  --amber-50: #fbf1dc;
+  --red-500: #d64545;
+  --red-50: #fbe9e9;
+
+  /* ---- Semantic aliases ----------------------------- */
+  --brand: var(--tera-500);
+  --brand-strong: var(--tera-700);
+  --brand-soft: #e4f5fb;
+  --accent: var(--clay-500);
+
+  --text-strong: var(--ink-900);
+  --text-body: var(--neutral-700);
+  --text-muted: var(--neutral-500);
+  --text-on-brand: var(--white);
+  --text-on-dark: #dceaf1;
+
+  --surface-page: var(--neutral-50);
+  --surface-card: var(--white);
+  --surface-sunken: var(--neutral-100);
+  --surface-dark: var(--ink-900);
+  --surface-brand: var(--tera-500);
+
+  --border: var(--neutral-200);
+  --border-strong: var(--neutral-300);
+  --border-focus: var(--tera-500);
+
+  --link: var(--tera-600);
+
+  --grad-brand: linear-gradient(
+    120deg,
+    var(--tera-aqua) 0%,
+    var(--tera-500) 48%,
+    var(--tera-700) 100%
+  );
+  --grad-brand-soft: linear-gradient(120deg, #e4f8fc 0%, #e8f3fa 100%);
+
+  /* ---- Type scale (16px root, 1.250 major-third) --- */
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: 3rem;
+  --text-5xl: 4rem;
+  --text-6xl: 5.25rem;
+
+  --leading-tight: 1.08;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+  --tracking-eyebrow: 0.16em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extra: 800;
+
+  /* Semantic type roles (font shorthand) */
+  --type-display: var(--weight-extra) var(--text-6xl) / var(--leading-tight)
+    var(--font-display);
+  --type-h1: var(--weight-bold) var(--text-4xl) / var(--leading-tight)
+    var(--font-display);
+  --type-h2: var(--weight-bold) var(--text-3xl) / 1.15 var(--font-display);
+  --type-h3: var(--weight-semibold) var(--text-2xl) / 1.2 var(--font-display);
+  --type-h4: var(--weight-semibold) var(--text-xl) / 1.3 var(--font-display);
+  --type-lead: var(--weight-regular) var(--text-lg) / var(--leading-relaxed)
+    var(--font-body);
+  --type-body: var(--weight-regular) var(--text-md) / var(--leading-normal)
+    var(--font-body);
+  --type-small: var(--weight-medium) var(--text-sm) / var(--leading-normal)
+    var(--font-body);
+
+  /* ---- Spacing — 4px grid --------------------------- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---- Radius --------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --radius-2xl: 40px;
+  --radius-pill: 999px;
+
+  /* ---- Borders -------------------------------------- */
+  --border-width: 1px;
+  --border-width-strong: 1.5px;
+
+  /* ---- Shadows -------------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(6, 40, 58, 0.06);
+  --shadow-sm: 0 2px 6px rgba(6, 40, 58, 0.07);
+  --shadow-md: 0 8px 20px -6px rgba(6, 40, 58, 0.12);
+  --shadow-lg: 0 18px 40px -12px rgba(6, 40, 58, 0.16);
+  --shadow-xl: 0 30px 70px -20px rgba(6, 40, 58, 0.22);
+  --shadow-brand: 0 14px 30px -10px rgba(17, 159, 214, 0.45);
+  --shadow-focus: 0 0 0 3px rgba(17, 159, 214, 0.3);
+
+  /* ---- Motion --------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 360ms;
+
+  /* ---- Layout --------------------------------------- */
+  --container: 1200px;
+  --container-wide: 1360px;
+  --gutter: var(--space-5);
 }
 
+/* Tailwind v4 theme bridge — expose tokens to utility classes */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-ink: var(--ink-900);
+  --color-page: var(--surface-page);
+  --color-card: var(--surface-card);
+  --color-border-default: var(--border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================================
+   Base / typography
+   ============================================================ */
+html,
+body {
+  background: var(--surface-page);
+  color: var(--text-body);
+  font: var(--type-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Reusable eyebrow label (uppercased small tracking) */
+.tera-eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--brand-strong);
+}
+
+/* Smooth anchor scroll with offset for sticky header */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--ink-900);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slideup {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tera Desarrollos — Sitio web
 
-## Getting Started
+Marketing site for **Tera Desarrollos**, a Saltillo (Coahuila, México) residential
+home builder. Presents the current development — **Fraccionamiento Hacienda El
+Milagro (HEM)** — its three home models (Volterra, Top Urban, Sky Deck), the
+construction process, amenities, master plan / available lots, and a contact
+flow. Spanish-language (es-MX).
 
-First, run the development server:
+Built with **Next.js 16** (App Router, Turbopack), **React 19**, **TypeScript**,
+**Tailwind CSS v4**, and a token-driven design system derived from the brand's
+design handoff. Icons via **lucide-react**; fonts via `next/font` (Sora, Manrope,
+JetBrains Mono).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Pages
+
+- `/` — Home: hero, models grid (with size filter), construction process, CTA, footer
+- `/desarrollo-hem` — Development: hero, location, services, amenities, master plan + lots, contact
+- `/modelo/[slug]` — Model detail for `volterra`, `topurban`, `skydeck`
+
+## Project structure
+
+```
+src/
+  app/
+    layout.tsx              # next/font setup + root <html>
+    globals.css             # design tokens (colors, type, spacing, motion) + base
+    page.tsx                # home
+    desarrollo-hem/         # development page
+    modelo/[slug]/          # model detail (static-generated for each model)
+  components/
+    ui/                     # design system: button, badge, card, tag, stat,
+                            # icon-button, input, property-card, icon
+    site/                   # header, footer, hero, developments, process,
+                            # contact-modal + provider
+  lib/
+    models.ts               # single source of truth — models, common, desarrollo
+    utils.ts                # cn() helper
+public/
+  logo-tera-*.png
+  models/<slug>/render.png  # gallery.png · plano-pb.png · plano-pa.png …
+  desarrollos/hem/*.png     # acceso · gym · juegos · masterplan · ubicacion
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+All content is data-driven from `src/lib/models.ts`. To change a price, render,
+or amenity, edit that file — components consume it directly. Replace with a CMS
+fetch when ready.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design tokens
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Ported verbatim from the design handoff into `src/app/globals.css` as CSS
+custom properties:
 
-## Learn More
+- **Brand:** `--tera-500 #119FD6` (primary) with aqua→ocean ramp; signature
+  gradient `--grad-brand`.
+- **Ink/navy** for headings and dark surfaces.
+- **Cool neutrals** + a **warm clay** accent for terra/land warmth.
+- **Type:** Sora (display), Manrope (body), JetBrains Mono (specs).
+- **Scale, radius, shadows, motion** all token-driven (see the top of `globals.css`).
 
-To learn more about Next.js, take a look at the following resources:
+## Getting started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # production build
+npm run lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Optimized for **Vercel**. `next build` prerenders the home page, the development
+page, and all three model pages as static HTML — no runtime server required for
+the marketing site.
