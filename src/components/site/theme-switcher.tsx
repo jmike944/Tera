@@ -52,7 +52,7 @@ export function ThemeSwitcher() {
 
   return (
     <div
-      className="fixed bottom-5 left-5 z-[90] flex items-center gap-1 rounded-[var(--radius-pill)] border p-1"
+      className="fixed bottom-5 right-5 z-[90] flex items-center gap-1 rounded-[var(--radius-pill)] border p-1"
       style={{
         background: "var(--surface-card-translucent)",
         borderColor: "var(--border)",
