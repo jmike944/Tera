@@ -5,9 +5,31 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
+import {
+  ExpandHint,
+  Lightbox,
+  useLightbox,
+  type LightboxItem,
+} from "@/components/ui/lightbox";
 import { PropertyCard } from "@/components/ui/property-card";
 import { useContactModal } from "@/components/site/contact-context";
 import { desarrollo as d, modelos } from "@/lib/models";
+
+const HEM_PHOTOS: LightboxItem[] = [
+  { src: d.galeria.acceso, alt: "Acceso", caption: "Hacienda El Milagro — acceso" },
+  { src: d.galeria.ubicacion, alt: "Ubicación", caption: "Hacienda El Milagro — ubicación" },
+  { src: d.galeria.juegos, alt: "Juegos infantiles", caption: "Hacienda El Milagro — juegos infantiles" },
+  { src: d.galeria.gym, alt: "Gimnasio al aire libre", caption: "Hacienda El Milagro — gimnasio al aire libre" },
+  { src: d.galeria.masterplan, alt: "Master plan", caption: "Hacienda El Milagro — master plan" },
+];
+
+const HEM_INDEX = {
+  acceso: 0,
+  ubicacion: 1,
+  juegos: 2,
+  gym: 3,
+  masterplan: 4,
+} as const;
 
 function SectionHead({
   eyebrow,
@@ -37,6 +59,7 @@ function SectionHead({
 
 export function DesarrolloHEM() {
   const { setOpen: setContact } = useContactModal();
+  const hemLb = useLightbox(HEM_PHOTOS);
 
   const scrollToModelos = () => {
     const el = document.getElementById("modelos");
@@ -103,8 +126,11 @@ export function DesarrolloHEM() {
               </Button>
             </div>
           </div>
-          <div
-            className="relative overflow-hidden rounded-[var(--radius-xl)]"
+          <button
+            type="button"
+            onClick={() => hemLb.openAt(HEM_INDEX.acceso)}
+            aria-label="Ver acceso de Hacienda El Milagro en grande"
+            className="group relative overflow-hidden rounded-[var(--radius-xl)] cursor-zoom-in"
             style={{ boxShadow: "var(--shadow-xl)", aspectRatio: "4 / 3" }}
           >
             <Image
@@ -112,10 +138,11 @@ export function DesarrolloHEM() {
               alt="Acceso Hacienda El Milagro"
               fill
               sizes="(max-width: 768px) 100vw, 600px"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
               priority
             />
-          </div>
+            <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+          </button>
         </div>
       </section>
 
@@ -151,8 +178,11 @@ export function DesarrolloHEM() {
         style={{ background: "var(--surface-page)" }}
       >
         <div className="mx-auto grid max-w-[var(--container)] items-center gap-[var(--space-7)] md:grid-cols-[1.1fr_0.9fr]">
-          <div
-            className="overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)]"
+          <button
+            type="button"
+            onClick={() => hemLb.openAt(HEM_INDEX.ubicacion)}
+            aria-label="Ver mapa de ubicación en grande"
+            className="group relative block w-full overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] cursor-zoom-in"
             style={{ boxShadow: "var(--shadow-lg)" }}
           >
             <Image
@@ -163,7 +193,8 @@ export function DesarrolloHEM() {
               sizes="(max-width: 1024px) 100vw, 660px"
               className="w-full h-auto"
             />
-          </div>
+            <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+          </button>
           <div>
             <SectionHead
               eyebrow="UBICACIÓN"
@@ -273,34 +304,40 @@ export function DesarrolloHEM() {
             ))}
           </div>
           <div className="grid gap-[18px] md:grid-cols-2">
-            <div
-              className="overflow-hidden rounded-[var(--radius-lg)]"
-              style={{ boxShadow: "var(--shadow-md)", aspectRatio: "3 / 2" }}
-            >
-              <div className="relative h-full w-full">
+            {(
+              [
+                {
+                  src: d.galeria.juegos,
+                  alt: "Juegos infantiles",
+                  idx: HEM_INDEX.juegos,
+                  ariaLabel: "Ver juegos infantiles en grande",
+                },
+                {
+                  src: d.galeria.gym,
+                  alt: "Gimnasio al aire libre",
+                  idx: HEM_INDEX.gym,
+                  ariaLabel: "Ver gimnasio al aire libre en grande",
+                },
+              ] as const
+            ).map(({ src, alt, idx, ariaLabel }) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => hemLb.openAt(idx)}
+                aria-label={ariaLabel}
+                className="group relative block w-full overflow-hidden rounded-[var(--radius-lg)] cursor-zoom-in"
+                style={{ boxShadow: "var(--shadow-md)", aspectRatio: "3 / 2" }}
+              >
                 <Image
-                  src={d.galeria.juegos}
-                  alt="Juegos infantiles"
+                  src={src}
+                  alt={alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 600px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
                 />
-              </div>
-            </div>
-            <div
-              className="overflow-hidden rounded-[var(--radius-lg)]"
-              style={{ boxShadow: "var(--shadow-md)", aspectRatio: "3 / 2" }}
-            >
-              <div className="relative h-full w-full">
-                <Image
-                  src={d.galeria.gym}
-                  alt="Gimnasio al aire libre"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
+                <ExpandHint className="absolute bottom-3 right-3 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+              </button>
+            ))}
           </div>
         </div>
       </section>
@@ -344,8 +381,11 @@ export function DesarrolloHEM() {
         <div className="mx-auto max-w-[var(--container)]">
           <SectionHead eyebrow="MASTER PLAN" title="Lotes disponibles" />
           <div className="grid items-center gap-[var(--space-7)] md:grid-cols-[1.4fr_1fr]">
-            <div
-              className="overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-white"
+            <button
+              type="button"
+              onClick={() => hemLb.openAt(HEM_INDEX.masterplan)}
+              aria-label="Ver master plan en grande"
+              className="group relative block w-full overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] bg-white cursor-zoom-in"
               style={{ boxShadow: "var(--shadow-lg)" }}
             >
               <Image
@@ -356,7 +396,8 @@ export function DesarrolloHEM() {
                 sizes="(max-width: 1024px) 100vw, 700px"
                 className="w-full h-auto"
               />
-            </div>
+              <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+            </button>
             <div>
               <div className="flex flex-col gap-3.5">
                 {d.lotes.map((l) => (
@@ -446,6 +487,8 @@ export function DesarrolloHEM() {
           </div>
         </div>
       </section>
+
+      <Lightbox {...hemLb.bind} />
     </div>
   );
 }
