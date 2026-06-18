@@ -22,6 +22,12 @@ export type Modelo = {
   chip: string;
   render: string;
   galeria: string;
+  /** Number of real construction photos available under
+   *  /models/<slug>/photos/NN.jpg (01..photoCount, zero-padded). */
+  photoCount: number;
+  /** Number of construction video clips under
+   *  /models/<slug>/videos/NN.mp4. 0 = no video tour. */
+  videoCount: number;
   resumen: string;
   precioDesde: string;
   entregaInmediata: EntregaInmediata[] | null;
@@ -131,6 +137,8 @@ export const modelos: Modelo[] = [
     chip: "2 opciones",
     render: "/models/volterra/render.png",
     galeria: "/models/volterra/gallery.png",
+    photoCount: 30,
+    videoCount: 0,
     resumen:
       "El modelo de acceso a Hacienda El Milagro: 187 m² en dos niveles con cochera techada para dos autos, cocina tipo loft y recámara principal con walking closet. Disponible en entrega inmediata o por construcción.",
     precioDesde: "$3,990,000",
@@ -159,6 +167,8 @@ export const modelos: Modelo[] = [
     chip: "Listo",
     render: "/models/topurban/render.png",
     galeria: "/models/topurban/gallery.png",
+    photoCount: 27,
+    videoCount: 26,
     resumen:
       "Fachada contemporánea con volumen en piedra y 217 m². Distribución amplia de dos niveles, recámara principal con balcón y roof garden. Entrega inmediata.",
     precioDesde: "$4,290,000",
@@ -190,6 +200,8 @@ export const modelos: Modelo[] = [
     chip: "El más amplio",
     render: "/models/skydeck/render.png",
     galeria: "/models/skydeck/gallery.png",
+    photoCount: 46,
+    videoCount: 0,
     resumen:
       "El modelo insignia: 224 m² con fachada de líneas puras y acento en piedra, recámara principal con balcón y roof garden panorámico. Disponible por construcción.",
     precioDesde: "$3,130,497",

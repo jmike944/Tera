@@ -14,6 +14,8 @@ import {
   type LightboxItem,
 } from "@/components/ui/lightbox";
 import { useContactModal } from "@/components/site/contact-context";
+import { PhotoGallery } from "@/components/site/photo-gallery";
+import { VideoGallery } from "@/components/site/video-gallery";
 import { modelos, type ModeloFull } from "@/lib/models";
 
 function SectionHead({
@@ -85,19 +87,14 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
   const { setOpen: setContact } = useContactModal();
   const others = modelos.filter((x) => x.slug !== m.slug);
 
-  const photos: LightboxItem[] = [
+  const renderLb = useLightbox([
     {
       src: m.render,
       alt: `Render ${m.nombre}`,
       caption: `${m.nombre} — render exterior`,
     },
-    {
-      src: m.galeria,
-      alt: `Galería ${m.nombre}`,
-      caption: `${m.nombre} — galería de obra`,
-    },
-  ];
-  const planos: LightboxItem[] = [
+  ] as LightboxItem[]);
+  const planosLb = useLightbox([
     {
       src: `/models/${m.slug}/plano-pb.png`,
       alt: `Planta baja — ${m.nombre}`,
@@ -108,10 +105,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
       alt: `Planta alta — ${m.nombre}`,
       caption: `${m.nombre} — planta alta (plano arquitectónico)`,
     },
-  ];
-
-  const photosLb = useLightbox(photos);
-  const planosLb = useLightbox(planos);
+  ] as LightboxItem[]);
 
   return (
     <div>
@@ -139,7 +133,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
       <section className="mx-auto grid max-w-[var(--container-wide)] items-center gap-[var(--space-7)] px-[var(--space-6)] py-7 pb-14 md:grid-cols-[1.15fr_0.85fr]">
         <button
           type="button"
-          onClick={() => photosLb.openAt(0)}
+          onClick={() => renderLb.openAt(0)}
           aria-label={`Ver render de ${m.nombre} en grande`}
           className="group relative overflow-hidden rounded-[var(--radius-xl)] cursor-zoom-in text-left"
           style={{
@@ -312,27 +306,37 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
             eyebrow="OBRA Y ACABADOS"
             title="Así se ve por dentro y por fuera"
           />
-          <button
-            type="button"
-            onClick={() => photosLb.openAt(1)}
-            aria-label={`Ver galería de ${m.nombre} en grande`}
-            className="group relative block w-full overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] cursor-zoom-in"
-            style={{ boxShadow: "var(--shadow-lg)" }}
-          >
-            <Image
-              src={m.galeria}
-              alt={`Galería ${m.nombre}`}
-              width={1600}
-              height={1000}
-              sizes="(max-width: 1280px) 100vw, 1100px"
-              className="w-full h-auto transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]"
-            />
-            <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
-          </button>
-          <p className="mt-3.5 text-[14px] text-[color:var(--text-muted)]">
-            Fotografías de obra de un ejemplar construido del modelo {m.nombre}.
-            Da clic para ver en grande.
+          <PhotoGallery
+            slug={m.slug}
+            count={m.photoCount}
+            modelName={m.nombre}
+          />
+          <p className="mt-5 text-[14px] text-[color:var(--text-muted)]">
+            {m.photoCount} fotografías de obra del modelo {m.nombre} en
+            Hacienda El Milagro. Da clic en cualquier imagen para ver en grande.
           </p>
+          {m.videoCount > 0 ? (
+            <div className="mt-12 border-t border-[color:var(--border)] pt-10">
+              <div className="mb-7">
+                <div className="tera-eyebrow mb-2.5">RECORRIDO EN VIDEO</div>
+                <h3
+                  className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]"
+                  style={{
+                    fontSize: "var(--text-2xl)",
+                    lineHeight: 1.2,
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  Camina por la obra
+                </h3>
+              </div>
+              <VideoGallery
+                slug={m.slug}
+                count={m.videoCount}
+                modelName={m.nombre}
+              />
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -542,7 +546,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
       </section>
 
       {/* lightboxes */}
-      <Lightbox {...photosLb.bind} />
+      <Lightbox {...renderLb.bind} />
       <Lightbox {...planosLb.bind} />
 
       {/* otros modelos */}
