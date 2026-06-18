@@ -165,10 +165,26 @@ export function VideoGallery({
               ref={(el) => {
                 visibleRefs.current[i] = el;
               }}
-              src={srcOf(i)}
+              // #t=0.5 forces iOS Safari / mobile WebKit to fetch the frame
+              // at 0.5s so something is visible before the user taps play
+              // (otherwise the thumbnail renders as a black box).
+              src={`${srcOf(i)}#t=0.5`}
               preload="metadata"
               muted
               playsInline
+              disablePictureInPicture
+              onLoadedMetadata={(e) => {
+                // Some mobile WebKits still won't render until currentTime
+                // is touched. Nudge to the same fragment time.
+                const v = e.currentTarget;
+                if (v.currentTime < 0.5) {
+                  try {
+                    v.currentTime = 0.5;
+                  } catch {
+                    /* ignore */
+                  }
+                }
+              }}
               className="pointer-events-none absolute inset-0 h-full w-full bg-black object-cover"
               tabIndex={-1}
             />
