@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { Icon } from "@/components/ui/icon";
 import { IconButton } from "@/components/ui/icon-button";
 
@@ -116,22 +115,16 @@ export function Lightbox({
         </>
       ) : null}
 
-      {/* Image */}
-      <div
+      {/* Image — plain <img> so its rendered bounds match its natural
+          aspect ratio. Clicks on the image itself stop propagation;
+          everything around it (letterbox, overlay) bubbles to onClose. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={item.src}
+        alt={item.alt}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full h-full max-w-[min(95vw,1600px)] max-h-[88vh] flex items-center justify-center p-6"
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src={item.src}
-            alt={item.alt}
-            fill
-            sizes="95vw"
-            className="object-contain"
-            priority
-          />
-        </div>
-      </div>
+        className="block max-w-[95vw] max-h-[88vh] w-auto h-auto rounded-[var(--radius-md)] object-contain cursor-default"
+      />
 
       {/* Caption */}
       {item.caption ? (

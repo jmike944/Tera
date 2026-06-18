@@ -230,30 +230,31 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
       >
         <div className="mx-auto max-w-[var(--container)]">
           <SectionHead eyebrow="DISTRIBUCIÓN" title="Planos y programa" />
-          {[
-            {
-              label: "Planta baja",
-              badge: "Nivel 1",
-              img: `/models/${m.slug}/plano-pb.png`,
-              items: m.plantaBaja,
-            },
-            {
-              label: "Planta alta",
-              badge: "Nivel 2",
-              img: `/models/${m.slug}/plano-pa.png`,
-              items: m.plantaAlta,
-            },
-          ].map((lvl, idx) => (
-            <div
-              key={lvl.label}
-              className={
-                "grid items-center gap-[var(--space-7)] md:grid-cols-[0.85fr_1.15fr] " +
-                (idx
-                  ? "mt-[var(--space-7)] border-t border-[color:var(--border)] pt-[var(--space-7)]"
-                  : "")
-              }
-            >
-              <figure className="m-0">
+          <div className="grid gap-[var(--space-7)] md:grid-cols-2">
+            {[
+              {
+                label: "Planta baja",
+                badge: "Nivel 1",
+                img: `/models/${m.slug}/plano-pb.png`,
+                items: m.plantaBaja,
+              },
+              {
+                label: "Planta alta",
+                badge: "Nivel 2",
+                img: `/models/${m.slug}/plano-pa.png`,
+                items: m.plantaAlta,
+              },
+            ].map((lvl, idx) => (
+              <div key={lvl.label} className="flex flex-col">
+                <div className="mb-3 flex items-center gap-2.5">
+                  <h3
+                    className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
+                    style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
+                  >
+                    {lvl.label}
+                  </h3>
+                  <Badge tone="brand">{lvl.badge}</Badge>
+                </div>
                 <button
                   type="button"
                   onClick={() => planosLb.openAt(idx)}
@@ -266,33 +267,19 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                     alt={`${lvl.label} — ${m.nombre}`}
                     width={900}
                     height={700}
-                    sizes="(max-width: 1024px) 100vw, 450px"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="w-full h-auto"
                   />
                   <ExpandHint className="absolute bottom-5 right-5 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
                 </button>
-                <figcaption className="mt-2.5 text-center text-[12px] font-semibold text-[color:var(--text-muted)]">
-                  Plano · {lvl.label.toLowerCase()}
-                </figcaption>
-              </figure>
-              <div>
-                <div className="mb-2 flex items-center gap-2.5">
-                  <h3
-                    className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
-                    style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
-                  >
-                    {lvl.label}
-                  </h3>
-                  <Badge tone="brand">{lvl.badge}</Badge>
-                </div>
-                <ul className="m-0 grid list-none gap-x-[var(--space-6)] p-0 sm:grid-cols-2">
+                <ul className="m-0 mt-4 grid list-none gap-x-[var(--space-5)] p-0 sm:grid-cols-2">
                   {lvl.items.map(([icon, label]) => (
                     <ProgramItem key={label} icon={icon} label={label} />
                   ))}
                 </ul>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
