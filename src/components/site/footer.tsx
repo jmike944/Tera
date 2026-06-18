@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/ui/icon";
+import { Logo } from "@/components/ui/logo";
 
 export function Footer() {
   const cols: [string, [string, string][]][] = [
@@ -45,25 +45,8 @@ export function Footer() {
       <div className="mx-auto max-w-[var(--container-wide)]">
         <div className="grid gap-[var(--space-7)] pb-12 border-b border-white/12 md:grid-cols-[1.5fr_1fr_1fr_1.3fr]">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <Image
-                src="/logo-tera-symbol.png"
-                alt="Tera"
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
-              />
-              <div className="leading-none">
-                <div className="font-[var(--font-display)] font-extrabold text-white text-[22px] tracking-[-0.02em]">
-                  tera
-                </div>
-                <div
-                  className="text-[9px] font-bold tracking-[0.3em]"
-                  style={{ color: "var(--tera-aqua)" }}
-                >
-                  DESARROLLOS
-                </div>
-              </div>
+            <div className="mb-5">
+              <Logo size={44} tone="light" />
             </div>
             <p
               className="text-[15px] leading-relaxed max-w-[300px]"

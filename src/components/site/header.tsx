@@ -2,9 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
+import { Logo } from "@/components/ui/logo";
 import { useContactModal } from "./contact-context";
 
 export function Header() {
@@ -32,15 +32,12 @@ export function Header() {
       }}
     >
       <div className="mx-auto flex items-center justify-between px-[var(--space-6)] py-4 max-w-[var(--container-wide)]">
-        <Link href="/" aria-label="Tera Desarrollos — Inicio" className="flex items-center">
-          <Image
-            src="/logo-tera-full.png"
-            alt="Tera Desarrollos"
-            width={168}
-            height={42}
-            priority
-            style={{ height: 42, width: "auto" }}
-          />
+        <Link
+          href="/"
+          aria-label="Tera Desarrollos — Inicio"
+          className="flex items-center"
+        >
+          <Logo size={40} />
         </Link>
 
         <nav className="hidden md:flex items-center gap-[var(--space-6)]">
