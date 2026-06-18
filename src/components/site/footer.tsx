@@ -1,6 +1,35 @@
+import * as React from "react";
 import Link from "next/link";
 import { Icon } from "@/components/ui/icon";
 import { Logo } from "@/components/ui/logo";
+
+const InstagramGlyph = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+    {...props}
+  >
+    <rect x="3" y="3" width="18" height="18" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+  </svg>
+);
+
+const FacebookGlyph = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden
+    {...props}
+  >
+    <path d="M13.5 21v-8h2.6l.4-3.2h-3V7.7c0-.9.3-1.6 1.6-1.6H17V3.2C16.6 3.1 15.5 3 14.4 3 11.9 3 10.2 4.5 10.2 7.3v2.5H7.5V13h2.7v8h3.3z" />
+  </svg>
+);
 
 export function Footer() {
   const cols: [string, [string, string][]][] = [
@@ -56,14 +85,19 @@ export function Footer() {
               TERA Quality Build en Saltillo, Coahuila.
             </p>
             <div className="flex gap-3 mt-6">
-              {(["instagram", "facebook"] as const).map((s) => (
+              {(
+                [
+                  { id: "instagram", label: "Instagram", Glyph: InstagramGlyph },
+                  { id: "facebook", label: "Facebook", Glyph: FacebookGlyph },
+                ] as const
+              ).map(({ id, label, Glyph }) => (
                 <a
-                  key={s}
+                  key={id}
                   href="#"
-                  aria-label={s}
-                  className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-sm)] bg-white/8 text-white hover:bg-white/14 transition-colors"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-[var(--radius-sm)] bg-white/10 text-white hover:bg-white/20 transition-colors"
                 >
-                  <Icon name={s} size={18} />
+                  <Glyph width={18} height={18} />
                 </a>
               ))}
             </div>

@@ -558,12 +558,12 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                   padded={false}
                   className="flex items-stretch"
                 >
-                  <div className="relative h-full w-[200px] shrink-0 overflow-hidden">
+                  <div className="relative w-[220px] shrink-0 overflow-hidden aspect-[4/3]">
                     <Image
                       src={o.render}
                       alt={o.nombre}
                       fill
-                      sizes="200px"
+                      sizes="220px"
                       className="object-cover"
                     />
                   </div>
