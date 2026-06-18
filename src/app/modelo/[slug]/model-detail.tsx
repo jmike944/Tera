@@ -7,6 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
 import { Stat } from "@/components/ui/stat";
+import {
+  ExpandHint,
+  Lightbox,
+  useLightbox,
+  type LightboxItem,
+} from "@/components/ui/lightbox";
 import { useContactModal } from "@/components/site/contact-context";
 import { modelos, type ModeloFull } from "@/lib/models";
 
@@ -79,6 +85,34 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
   const { setOpen: setContact } = useContactModal();
   const others = modelos.filter((x) => x.slug !== m.slug);
 
+  const photos: LightboxItem[] = [
+    {
+      src: m.render,
+      alt: `Render ${m.nombre}`,
+      caption: `${m.nombre} — render exterior`,
+    },
+    {
+      src: m.galeria,
+      alt: `Galería ${m.nombre}`,
+      caption: `${m.nombre} — galería de obra`,
+    },
+  ];
+  const planos: LightboxItem[] = [
+    {
+      src: `/models/${m.slug}/plano-pb.png`,
+      alt: `Planta baja — ${m.nombre}`,
+      caption: `${m.nombre} — planta baja (plano arquitectónico)`,
+    },
+    {
+      src: `/models/${m.slug}/plano-pa.png`,
+      alt: `Planta alta — ${m.nombre}`,
+      caption: `${m.nombre} — planta alta (plano arquitectónico)`,
+    },
+  ];
+
+  const photosLb = useLightbox(photos);
+  const planosLb = useLightbox(planos);
+
   return (
     <div>
       {/* breadcrumb */}
@@ -103,8 +137,11 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
 
       {/* hero */}
       <section className="mx-auto grid max-w-[var(--container-wide)] items-center gap-[var(--space-7)] px-[var(--space-6)] py-7 pb-14 md:grid-cols-[1.15fr_0.85fr]">
-        <div
-          className="relative overflow-hidden rounded-[var(--radius-xl)]"
+        <button
+          type="button"
+          onClick={() => photosLb.openAt(0)}
+          aria-label={`Ver render de ${m.nombre} en grande`}
+          className="group relative overflow-hidden rounded-[var(--radius-xl)] cursor-zoom-in text-left"
           style={{
             boxShadow: "var(--shadow-xl)",
             background: "var(--surface-sunken)",
@@ -116,10 +153,14 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
             alt={`Render ${m.nombre}`}
             fill
             sizes="(max-width: 1024px) 100vw, 720px"
-            className="object-cover"
+            className="object-cover transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-105"
             priority
           />
-        </div>
+          <div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100"
+          />
+          <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+        </button>
         <div>
           <div className="mb-3.5 flex flex-wrap gap-2">
             <Badge tone={m.status.tone} variant="solid" dot>
@@ -219,8 +260,11 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
               }
             >
               <figure className="m-0">
-                <div
-                  className="overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white p-3.5"
+                <button
+                  type="button"
+                  onClick={() => planosLb.openAt(idx)}
+                  aria-label={`Ver ${lvl.label.toLowerCase()} de ${m.nombre} en grande`}
+                  className="group relative w-full overflow-hidden rounded-[var(--radius-lg)] border border-[color:var(--border)] bg-white p-3.5 cursor-zoom-in transition-[box-shadow,border-color] duration-[var(--dur-base)] ease-[var(--ease-out)] hover:border-[color:var(--brand)]"
                   style={{ boxShadow: "var(--shadow-sm)" }}
                 >
                   <Image
@@ -231,7 +275,8 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                     sizes="(max-width: 1024px) 100vw, 450px"
                     className="w-full h-auto"
                   />
-                </div>
+                  <ExpandHint className="absolute bottom-5 right-5 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+                </button>
                 <figcaption className="mt-2.5 text-center text-[12px] font-semibold text-[color:var(--text-muted)]">
                   Plano · {lvl.label.toLowerCase()}
                 </figcaption>
@@ -267,8 +312,11 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
             eyebrow="OBRA Y ACABADOS"
             title="Así se ve por dentro y por fuera"
           />
-          <div
-            className="overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)]"
+          <button
+            type="button"
+            onClick={() => photosLb.openAt(1)}
+            aria-label={`Ver galería de ${m.nombre} en grande`}
+            className="group relative block w-full overflow-hidden rounded-[var(--radius-xl)] border border-[color:var(--border)] cursor-zoom-in"
             style={{ boxShadow: "var(--shadow-lg)" }}
           >
             <Image
@@ -277,11 +325,13 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
               width={1600}
               height={1000}
               sizes="(max-width: 1280px) 100vw, 1100px"
-              className="w-full h-auto"
+              className="w-full h-auto transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]"
             />
-          </div>
+            <ExpandHint className="absolute bottom-4 right-4 opacity-0 transition-opacity duration-[var(--dur-base)] group-hover:opacity-100" />
+          </button>
           <p className="mt-3.5 text-[14px] text-[color:var(--text-muted)]">
             Fotografías de obra de un ejemplar construido del modelo {m.nombre}.
+            Da clic para ver en grande.
           </p>
         </div>
       </section>
@@ -490,6 +540,10 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
           </p>
         </div>
       </section>
+
+      {/* lightboxes */}
+      <Lightbox {...photosLb.bind} />
+      <Lightbox {...planosLb.bind} />
 
       {/* otros modelos */}
       <section
