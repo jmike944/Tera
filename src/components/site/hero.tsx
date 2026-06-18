@@ -36,7 +36,7 @@ export function Hero() {
             </Badge>
           </div>
           <h1
-            className="font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)] m-0"
+            className="font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)] m-0"
             style={{
               fontSize: "clamp(44px, 5vw, 76px)",
               lineHeight: 1.02,
@@ -86,7 +86,7 @@ export function Hero() {
               ["98%", "Entregas a tiempo"],
             ].map(([n, l]) => (
               <div key={l}>
-                <div className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)] text-[36px] leading-none tabular-nums">
+                <div className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)] text-[36px] leading-none tabular-nums">
                   {n}
                 </div>
                 <div className="mt-1 text-[14px] font-medium text-[color:var(--text-muted)]">
@@ -130,7 +130,7 @@ export function Hero() {
                 <Icon name="hard-hat" size={20} />
               </span>
               <div>
-                <div className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)] text-[14px]">
+                <div className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)] text-[14px]">
                   Avance de obra
                 </div>
                 <div className="text-[12px] font-medium text-[color:var(--text-muted)]">

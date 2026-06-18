@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Sora, Manrope, JetBrains_Mono } from "next/font/google";
+import { ThemeSwitcher } from "@/components/site/theme-switcher";
 import "./globals.css";
+
+const THEME_INIT_SCRIPT = `
+(function(){try{var k='tera-theme';var p=localStorage.getItem(k)||'system';var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=p==='dark'||(p!=='light'&&m)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+`;
 
 const sora = Sora({
   variable: "--font-display",
@@ -38,9 +43,16 @@ export default function RootLayout({
     <html
       lang="es-MX"
       className={`${sora.variable} ${manrope.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-[var(--surface-page)] text-[color:var(--text-body)]">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-[color:var(--surface-page)] text-[color:var(--text-body)]">
         {children}
+        <ThemeSwitcher />
       </body>
     </html>
   );

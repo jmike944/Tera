@@ -12,7 +12,7 @@ export function Stat({ value, unit, label, className }: StatProps) {
   return (
     <div className={cn("flex flex-col gap-1", className)}>
       <div
-        className="font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)] leading-none tabular-nums"
+        className="font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)] leading-none tabular-nums"
         style={{ fontSize: "var(--text-2xl)" }}
       >
         {value}

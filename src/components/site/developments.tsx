@@ -36,7 +36,7 @@ export function Developments() {
               FRACCIONAMIENTO HACIENDA EL MILAGRO · SALTILLO
             </div>
             <h2
-              className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)]"
+              className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]"
               style={{
                 fontSize: "var(--text-3xl)",
                 lineHeight: 1.15,

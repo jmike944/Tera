@@ -27,7 +27,7 @@ function SectionHead({
     <div className="mb-7">
       <div className="tera-eyebrow mb-2.5">{eyebrow}</div>
       <h2
-        className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)]"
+        className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]"
         style={{
           fontSize: "var(--text-3xl)",
           lineHeight: 1.15,
@@ -129,7 +129,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
             Hacienda El Milagro
           </Link>
           <Icon name="chevron-right" size={14} />
-          <span className="font-semibold text-[color:var(--ink-900)]">
+          <span className="font-semibold text-[color:var(--text-strong)]">
             {m.nombre}
           </span>
         </div>
@@ -172,7 +172,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
             {m.fraccionamiento} · {m.ciudad}
           </div>
           <h1
-            className="mb-4 font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)]"
+            className="mb-4 font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)]"
             style={{
               fontSize: "var(--text-5xl)",
               lineHeight: 1,
@@ -199,7 +199,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                 Precio desde
               </div>
               <div
-                className="font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)] tabular-nums"
+                className="font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)] tabular-nums"
                 style={{
                   fontSize: "var(--text-4xl)",
                   lineHeight: 1,
@@ -284,7 +284,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
               <div>
                 <div className="mb-2 flex items-center gap-2.5">
                   <h3
-                    className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                    className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                     style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                   >
                     {lvl.label}
@@ -353,7 +353,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                   <Icon name="shield-check" size={22} />
                 </span>
                 <h4
-                  className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                  className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                   style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                 >
                   Construcción
@@ -371,7 +371,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                   <Icon name="sparkles" size={22} />
                 </span>
                 <h4
-                  className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                  className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                   style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                 >
                   Acabados de alta gama
@@ -389,7 +389,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                   <Icon name="plug-zap" size={22} />
                 </span>
                 <h4
-                  className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                  className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                   style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                 >
                   Equipamiento
@@ -426,7 +426,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                     <Icon name="key-round" size={22} />
                   </span>
                   <h4
-                    className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                    className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                     style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                   >
                     Entrega inmediata
@@ -447,7 +447,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                       {o.tipo}
                     </span>
                     <span
-                      className="font-[var(--font-display)] font-bold tabular-nums text-[color:var(--ink-900)]"
+                      className="font-[var(--font-display)] font-bold tabular-nums text-[color:var(--text-strong)]"
                       style={{ fontSize: "var(--text-xl)" }}
                     >
                       {o.precio}
@@ -583,7 +583,7 @@ export function ModelDetail({ modelo: m }: { modelo: ModeloFull }) {
                       </Badge>
                     </div>
                     <h4
-                      className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                      className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                       style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
                     >
                       {o.nombre}

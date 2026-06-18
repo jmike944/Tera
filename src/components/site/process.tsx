@@ -38,7 +38,7 @@ export function Process() {
         <div className="mb-12 text-center">
           <div className="tera-eyebrow mb-2.5">CÓMO FUNCIONA</div>
           <h2
-            className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)]"
+            className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]"
             style={{ fontSize: "var(--text-3xl)", lineHeight: 1.15 }}
           >
             De la idea a las llaves, en cuatro pasos
@@ -66,7 +66,7 @@ export function Process() {
                 0{i + 1}
               </div>
               <h4
-                className="mb-2 font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+                className="mb-2 font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
                 style={{ fontSize: "var(--text-xl)", lineHeight: 1.3 }}
               >
                 {s.t}

@@ -59,6 +59,7 @@
 
   --surface-page: var(--neutral-50);
   --surface-card: var(--white);
+  --surface-card-translucent: rgba(255, 255, 255, 0.88);
   --surface-sunken: var(--neutral-100);
   --surface-dark: var(--ink-900);
   --surface-brand: var(--tera-500);
@@ -231,6 +232,57 @@ html {
 ::selection {
   background: var(--brand-soft);
   color: var(--ink-900);
+}
+
+/* ============================================================
+   Dark theme — token overrides applied via [data-theme="dark"]
+   ============================================================ */
+[data-theme="dark"] {
+  --surface-page: #08283c;
+  --surface-card: #0e3a52;
+  --surface-card-translucent: rgba(14, 58, 82, 0.85);
+  --surface-sunken: #0a3146;
+  --surface-dark: #051b29;
+  --surface-brand: var(--tera-500);
+
+  --text-strong: #f1f7fa;
+  --text-body: #c7d6e0;
+  --text-muted: #8aa2b1;
+  --text-on-brand: #ffffff;
+  --text-on-dark: #dceaf1;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Brand-tinted surface */
+  --brand-soft: rgba(17, 159, 214, 0.16);
+
+  /* Semantic 50-level tints become translucent on dark */
+  --green-50: rgba(31, 157, 107, 0.18);
+  --amber-50: rgba(224, 161, 46, 0.18);
+  --red-50: rgba(214, 69, 69, 0.18);
+
+  /* Softer / darker shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 20px -6px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 18px 40px -12px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 30px 70px -20px rgba(0, 0, 0, 0.65);
+  --shadow-brand: 0 14px 30px -10px rgba(17, 159, 214, 0.55);
+  --shadow-focus: 0 0 0 3px rgba(17, 159, 214, 0.45);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+html,
+body {
+  transition:
+    background-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
 }
 
 @keyframes fadein {

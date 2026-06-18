@@ -94,7 +94,7 @@ export function ContactModal() {
               >
                 <Icon name="check" size={32} />
               </div>
-              <h4 className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)] text-xl mb-2">
+              <h4 className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)] text-xl mb-2">
                 ¡Gracias!
               </h4>
               <p className="text-[14px] text-[color:var(--text-body)]">

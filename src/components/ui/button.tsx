@@ -31,7 +31,7 @@ const variants: Record<Variant, string> = {
     "text-white shadow-[var(--shadow-brand)] hover:shadow-[var(--shadow-lg)] " +
     "bg-[image:var(--grad-brand)] bg-[length:200%_100%] bg-left hover:bg-right",
   secondary:
-    "text-[color:var(--ink-900)] bg-white border border-[color:var(--border-strong)] " +
+    "text-[color:var(--text-strong)] bg-[color:var(--surface-card)] border border-[color:var(--border-strong)] " +
     "hover:border-[color:var(--brand)] hover:text-[color:var(--brand-strong)] shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]",
   ghost:
     "text-[color:var(--text-body)] hover:text-[color:var(--brand-strong)] hover:bg-[color:var(--surface-sunken)]",

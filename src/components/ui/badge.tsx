@@ -13,7 +13,7 @@ type BadgeProps = React.HTMLAttributes<HTMLSpanElement> & {
 const palettes: Record<Tone, { dot: string; soft: string; solid: string }> = {
   neutral: {
     dot: "#73848F",
-    soft: "bg-[color:var(--surface-sunken)] text-[color:var(--ink-900)]",
+    soft: "bg-[color:var(--surface-sunken)] text-[color:var(--text-strong)]",
     solid: "bg-[color:var(--neutral-800)] text-white",
   },
   brand: {
@@ -56,7 +56,7 @@ export function Badge({
     variant === "solid"
       ? palette.solid
       : variant === "outline"
-        ? "bg-transparent border border-[color:var(--border-strong)] text-[color:var(--ink-900)]"
+        ? "bg-transparent border border-[color:var(--border-strong)] text-[color:var(--text-strong)]"
         : palette.soft;
   return (
     <span

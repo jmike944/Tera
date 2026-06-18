@@ -22,7 +22,7 @@ function SectionHead({
     <div className={center ? "mb-8 text-center" : "mb-8"}>
       <div className="tera-eyebrow mb-2.5">{eyebrow}</div>
       <h2
-        className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)]"
+        className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]"
         style={{
           fontSize: "var(--text-3xl)",
           lineHeight: 1.15,
@@ -64,7 +64,7 @@ export function DesarrolloHEM() {
             </div>
             <div className="tera-eyebrow mb-2.5">FRACCIONAMIENTO RESIDENCIAL</div>
             <h1
-              className="mb-3.5 font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)]"
+              className="mb-3.5 font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)]"
               style={{
                 fontSize: "clamp(40px,4.6vw,68px)",
                 lineHeight: 1,
@@ -140,7 +140,7 @@ export function DesarrolloHEM() {
               >
                 <Icon name={icon} size={20} />
               </span>
-              <span className="text-[14px] font-semibold text-[color:var(--ink-900)]">
+              <span className="text-[14px] font-semibold text-[color:var(--text-strong)]">
                 {label}
               </span>
             </div>
@@ -219,7 +219,7 @@ export function DesarrolloHEM() {
           <div className="flex-1 min-w-[220px]">
             <div className="tera-eyebrow mb-2">INFRAESTRUCTURA</div>
             <h3
-              className="font-[var(--font-display)] font-semibold text-[color:var(--ink-900)]"
+              className="font-[var(--font-display)] font-semibold text-[color:var(--text-strong)]"
               style={{ fontSize: "var(--text-2xl)", lineHeight: 1.2 }}
             >
               Servicios completos
@@ -229,7 +229,7 @@ export function DesarrolloHEM() {
             {d.servicios.map((s) => (
               <span
                 key={s}
-                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] px-4 py-2.5 text-[14px] font-semibold text-[color:var(--ink-900)]"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-pill)] px-4 py-2.5 text-[14px] font-semibold text-[color:var(--text-strong)]"
                 style={{ background: "var(--surface-sunken)" }}
               >
                 <span
@@ -269,7 +269,7 @@ export function DesarrolloHEM() {
                 >
                   <Icon name={icon} size={20} />
                 </span>
-                <span className="text-[14px] font-medium text-[color:var(--ink-900)]">
+                <span className="text-[14px] font-medium text-[color:var(--text-strong)]">
                   {label}
                 </span>
               </div>
@@ -374,7 +374,7 @@ export function DesarrolloHEM() {
                       {l.tipo}
                     </span>
                     <div>
-                      <div className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)]">
+                      <div className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)]">
                         {l.manzana}
                       </div>
                       <div

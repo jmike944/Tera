@@ -56,7 +56,7 @@ export function PropertyCard({
       <div className="p-[var(--space-5)] flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)] text-[22px] leading-none tracking-[-0.01em]">
+            <h3 className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)] text-[22px] leading-none tracking-[-0.01em]">
               {title}
             </h3>
             <div className="mt-1 text-[13px] text-[color:var(--text-muted)] font-medium">
@@ -67,7 +67,7 @@ export function PropertyCard({
             <div className="text-[10px] uppercase tracking-[0.1em] text-[color:var(--text-muted)] font-bold">
               Precio
             </div>
-            <div className="font-[var(--font-display)] font-extrabold text-[color:var(--ink-900)] text-[17px] tabular-nums leading-tight">
+            <div className="font-[var(--font-display)] font-extrabold text-[color:var(--text-strong)] text-[17px] tabular-nums leading-tight">
               {price}
             </div>
           </div>
@@ -75,7 +75,7 @@ export function PropertyCard({
         <div className="flex justify-between gap-2 pt-3 border-t border-[color:var(--border)]">
           {specs.map((s) => (
             <div key={s.label} className="flex flex-col gap-0.5">
-              <div className="font-[var(--font-display)] font-bold text-[color:var(--ink-900)] text-[15px] leading-none tabular-nums">
+              <div className="font-[var(--font-display)] font-bold text-[color:var(--text-strong)] text-[15px] leading-none tabular-nums">
                 {s.value}
                 {s.unit ? (
                   <span className="ml-0.5 text-[12px] text-[color:var(--text-muted)] font-mono font-medium">
