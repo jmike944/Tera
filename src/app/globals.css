@@ -78,6 +78,14 @@
   );
   --grad-brand-soft: linear-gradient(120deg, #e4f8fc 0%, #e8f3fa 100%);
 
+  /* Atmospheric hero wash — a soft aqua bloom in the top-right of hero
+     sections. Token so the dark theme can dial it down to a subtle glow. */
+  --hero-wash: radial-gradient(
+    1100px 520px at 78% -8%,
+    #e4f8fc 0%,
+    rgba(228, 248, 252, 0) 60%
+  );
+
   /* ---- Type scale (16px root, 1.250 major-third) --- */
   --text-2xs: 0.6875rem;
   --text-xs: 0.75rem;
@@ -270,6 +278,15 @@ html {
   --shadow-xl: 0 30px 70px -20px rgba(0, 0, 0, 0.65);
   --shadow-brand: 0 14px 30px -10px rgba(17, 159, 214, 0.55);
   --shadow-focus: 0 0 0 3px rgba(17, 159, 214, 0.45);
+
+  /* Subtle brand-tinted glow in dark mode — replaces the pale-cyan wash
+     that reads as a white halo against the navy page. */
+  --hero-wash: radial-gradient(
+    1100px 520px at 78% -8%,
+    rgba(43, 227, 238, 0.08) 0%,
+    rgba(17, 159, 214, 0.04) 35%,
+    rgba(17, 159, 214, 0) 65%
+  );
 
   color-scheme: dark;
 }

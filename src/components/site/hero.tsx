@@ -22,11 +22,8 @@ export function Hero() {
       style={{ background: "var(--surface-page)" }}
     >
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(1100px 520px at 78% -8%, #E4F8FC 0%, rgba(228,248,252,0) 60%)",
-        }}
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "var(--hero-wash)" }}
       />
       <div className="relative mx-auto max-w-[var(--container-wide)] px-[var(--space-6)] py-[72px] md:py-[88px] grid items-center gap-[var(--space-7)] md:grid-cols-[1.05fr_0.95fr]">
         <div>

@@ -48,11 +48,8 @@ export function DesarrolloHEM() {
       {/* hero */}
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(1100px 520px at 80% -10%, #E4F8FC 0%, rgba(228,248,252,0) 60%)",
-          }}
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "var(--hero-wash)" }}
         />
         <div className="relative mx-auto grid max-w-[var(--container-wide)] items-center gap-[var(--space-7)] px-[var(--space-6)] py-[56px] md:grid-cols-2">
           <div>
