@@ -85,6 +85,12 @@ export function Header() {
             </div>
           </div>
           <Link
+            href="/#coleccion"
+            className="text-[14px] font-semibold text-[color:var(--text-body)] hover:text-[color:var(--brand-strong)] transition-colors"
+          >
+            Colección
+          </Link>
+          <Link
             href="/#modelos"
             className="text-[14px] font-semibold text-[color:var(--text-body)] hover:text-[color:var(--brand-strong)] transition-colors"
           >
@@ -127,6 +133,13 @@ export function Header() {
               className="flex items-center gap-2 py-2 text-[15px] font-semibold text-[color:var(--text-strong)]"
             >
               <Icon name="map-pin" size={16} /> Hacienda El Milagro
+            </Link>
+            <Link
+              href="/#coleccion"
+              onClick={() => setMobileOpen(false)}
+              className="py-2 text-[15px] font-semibold text-[color:var(--text-body)]"
+            >
+              Colección
             </Link>
             <Link
               href="/#modelos"

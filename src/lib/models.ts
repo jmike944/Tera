@@ -51,6 +51,27 @@ export type Common = {
 
 export type ModeloFull = Modelo & Common;
 
+export type Pilar = { icon: string; titulo: string; texto: string };
+
+export type Coleccion = {
+  nombre: string;
+  lema: string;
+  eyebrow: string;
+  titulo: string;
+  intro: string;
+  parrafos: string[];
+  pilares: Pilar[];
+};
+
+export type QualityBuild = {
+  nombre: string;
+  eyebrow: string;
+  titulo: string;
+  intro: string;
+  etapas: number;
+  pilares: Pilar[];
+};
+
 export type Desarrollo = {
   nombre: string;
   sigla: string;
@@ -291,6 +312,92 @@ export const desarrollo: Desarrollo = {
     ubicacion: "/desarrollos/hem/ubicacion.png",
     masterplan: "/desarrollos/hem/masterplan.png",
   },
+};
+
+export const coleccion: Coleccion = {
+  nombre: "Alta Gama",
+  lema: "Tu casa. Tu hogar. Tu historia.",
+  eyebrow: "COLECCIÓN ALTA GAMA",
+  titulo: "Diseño contemporáneo en armonía con la naturaleza",
+  intro:
+    "Una colección de estilo contemporáneo, concebida con líneas limpias, espacios abiertos y una paleta de acabados neutros que privilegia la funcionalidad. Una atmósfera de serenidad, equilibrio y modernidad.",
+  parrafos: [
+    "Pensada para profesionales, parejas y familias jóvenes que valoran el alto diseño, la privacidad, la seguridad y la armonía en cada rincón, esta colección ofrece una estética atemporal con un enfoque vanguardista que mantiene una profunda conexión con la naturaleza.",
+    "Cada modelo representa un refugio cálido y seguro: simboliza estabilidad, confort y un estilo de vida que armoniza lo contemporáneo con el buen gusto. Sus fachadas, de líneas sobrias y elegantes, transmiten accesibilidad con distinción.",
+  ],
+  pilares: [
+    {
+      icon: "pen-line",
+      titulo: "Líneas limpias",
+      texto:
+        "Fachadas de líneas sobrias y elegantes que transmiten accesibilidad con distinción.",
+    },
+    {
+      icon: "maximize",
+      titulo: "Espacios abiertos",
+      texto:
+        "Una distribución que privilegia la funcionalidad, la seguridad y la fluidez espacial.",
+    },
+    {
+      icon: "palette",
+      titulo: "Paleta neutra",
+      texto:
+        "Acabados neutros que generan una atmósfera de serenidad, equilibrio y modernidad.",
+    },
+    {
+      icon: "gem",
+      titulo: "Marcas premium",
+      texto:
+        "Materiales modernos de marcas premium que enaltecen la elegancia de cada espacio.",
+    },
+    {
+      icon: "leaf",
+      titulo: "Armonía con la naturaleza",
+      texto:
+        "Integración armónica con el entorno y una profunda conexión con la naturaleza.",
+    },
+    {
+      icon: "shield-check",
+      titulo: "Privacidad y seguridad",
+      texto:
+        "Diseñada para quienes valoran el alto diseño, la privacidad y el bienestar familiar.",
+    },
+  ],
+};
+
+export const qualityBuild: QualityBuild = {
+  nombre: "TERA Quality Build",
+  eyebrow: "MODELO CONSTRUCTIVO DE CALIDAD MUNDIAL",
+  titulo: "Construido bajo TERA Quality Build",
+  intro:
+    "Cada casa de la Colección Alta Gama se construye bajo el modelo de calidad mundial “TERA Quality Build”, desarrollado por nosotros para garantizar estándares internacionales en cada proyecto. Una obsesión por lo bien hecho que consolida un estándar constructivo superior en nuestra industria.",
+  etapas: 12,
+  pilares: [
+    {
+      icon: "list-checks",
+      titulo: "12 etapas definidas",
+      texto:
+        "Un proceso riguroso de 12 etapas que garantiza estándares internacionales en cada proyecto.",
+    },
+    {
+      icon: "ruler",
+      titulo: "Precisión técnica",
+      texto:
+        "Procesos técnicos de alta precisión y una cultura de excelencia en cada detalle.",
+    },
+    {
+      icon: "layers",
+      titulo: "Materiales de alto desempeño",
+      texto:
+        "Uso de materiales de alto desempeño y mejores prácticas en cada etapa de la obra.",
+    },
+    {
+      icon: "shield-check",
+      titulo: "Seguridad y durabilidad",
+      texto:
+        "Una cultura que prioriza la seguridad, la durabilidad y el bienestar de todos los involucrados.",
+    },
+  ],
 };
 
 export function getModelo(slug: string): ModeloFull | null {
