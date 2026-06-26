@@ -1,6 +1,7 @@
 import { Header } from "@/components/site/header";
 import { Hero } from "@/components/site/hero";
 import { Developments } from "@/components/site/developments";
+import { Coleccion, QualityBuild } from "@/components/site/coleccion";
 import { Process, CTA } from "@/components/site/process";
 import { Footer } from "@/components/site/footer";
 import { ContactProvider } from "@/components/site/contact-context";
@@ -12,7 +13,9 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
+        <Coleccion />
         <Developments />
+        <QualityBuild />
         <Process />
         <CTA />
       </main>
